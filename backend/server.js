@@ -8,7 +8,7 @@ import trackingRoutes from './routes/trackingRoutes.js';
 import analyticsRoutes from './routes/analyticsRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
-
+console.log("SERVER FILE EXECUTING...");
 dotenv.config();
 
 const app = express();
@@ -21,7 +21,9 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
 // Database Connection
-connectDB();
+connectDB()
+  .then(() => console.log("DB Connected ✅"))
+  .catch((err) => console.log("DB Error ❌", err));
 
 // Basic Route Route
 app.get('/', (req, res) => {
